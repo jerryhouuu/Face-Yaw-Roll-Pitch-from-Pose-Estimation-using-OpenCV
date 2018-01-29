@@ -14,8 +14,10 @@ This work is used for pose estimation(yaw, pitch and roll) by Face landmarks(lef
 3. rvec_matrix = cv2.Rodrigues(rotation_vector)[0]
 4. proj_matrix = np.hstack((rvec_matrix, translation_vector))
 5. eulerAngles = cv2.decomposeProjectionMatrix(proj_matrix)[6] 
-
-
+6. pitch, yaw, roll = [math.radians(_) for _ in eulerAngles]
+7. pitch = math.degrees(math.asin(math.sin(pitch)))
+8. roll = -math.degrees(math.asin(math.sin(roll)))
+9. yaw = math.degrees(math.asin(math.sin(yaw)))
 
 ## References
 1. [Head Pose Estimation using OpenCV and Dlib](https://www.learnopencv.com/head-pose-estimation-using-opencv-and-dlib/)
